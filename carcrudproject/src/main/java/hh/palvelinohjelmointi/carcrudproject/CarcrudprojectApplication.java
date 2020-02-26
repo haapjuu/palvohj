@@ -19,8 +19,6 @@ public class CarcrudprojectApplication {
 		SpringApplication.run(CarcrudprojectApplication.class, args);
 	}
 	
-	
-	//  testidatan luonti H2-testitietokantaan aina sovelluksen käynnistyessä
 	@Bean
 	public CommandLineRunner carDemo(CarRepository carRepository) { 
 		return (args) -> {
