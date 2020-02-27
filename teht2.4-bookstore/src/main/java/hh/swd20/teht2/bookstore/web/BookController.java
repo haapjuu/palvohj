@@ -48,12 +48,12 @@ public class BookController {
 	
 	@RequestMapping(value = "/editbook/{id}", method = RequestMethod.GET)
 	public String getNewEditForm(@PathVariable("id") Long bookId, Model model) {
-		model.addAttribute("book", bookId);
+		model.addAttribute("book", bookRepo.findById(bookId));
 		return "editbook";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveCar(@ModelAttribute Book book) {
+	public String saveBook(@ModelAttribute Book book) {
 		bookRepo.save(book);
 		return "redirect:/booklist";
 	}
