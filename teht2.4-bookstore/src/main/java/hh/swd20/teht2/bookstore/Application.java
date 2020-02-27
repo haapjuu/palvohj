@@ -3,6 +3,8 @@ package hh.swd20.teht2.bookstore;
 
 import hh.swd20.teht2.bookstore.domain.Book;
 import hh.swd20.teht2.bookstore.domain.BookRepo;
+import hh.swd20.teht2.bookstore.domain.Category;
+import hh.swd20.teht2.bookstore.domain.CategoryRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -30,6 +32,21 @@ public class Application {
 			log.info("fetch all books");
 			for (Book book : bookRepo.findAll()) {
 				log.info(book.toString());
+			}
+
+		};
+	}
+	
+	@Bean
+	public CommandLineRunner categoryDemo(CategoryRepo categoryRepo) { 
+		return (args) -> {
+			log.info("save some books");
+			categoryRepo.save(new Category("scifi"));
+			categoryRepo.save(new Category("comic"));	
+			
+			log.info("fetch all books");
+			for (Category category : categoryRepo.findAll()) {
+				log.info(category.toString());
 			}
 
 		};
