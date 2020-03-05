@@ -12,9 +12,10 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Category {
+	
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long categoryid;
+	private long cid;
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
@@ -27,12 +28,12 @@ public class Category {
 		this.name = name;
 	}
 	
-	public Long getCategoryId() {
-		return categoryid;
+	public long getcid() {
+		return cid;
 	}
 	
-	public void setCategoryId(Long categoryid) {
-		this.categoryid = categoryid;
+	public void setcid(long cid) {
+		this.cid = cid;
 	}
 	
 	public String getName() {
@@ -53,6 +54,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [categoryid=" + categoryid + ", name=" + name + "]";
+		return "Category [cid=" + cid + ", name=" + name + "]";
 	}
+	
 }

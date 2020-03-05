@@ -14,7 +14,7 @@ public class Book {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long Id;
+	private long id;
 	private String author;
 	private String title;
 	private String isbn;
@@ -22,8 +22,8 @@ public class Book {
 	private Double price;
 	
 	@ManyToOne
-    @JoinColumn(name = "categoryid")
-    private Category category;
+    @JoinColumn(name = "cid")
+	private Category category;
 
     public Book() {}
 	
@@ -67,11 +67,11 @@ public class Book {
 	public void setYear(Integer year) {
 		this.year = year;
 	}
-	public Long getId() {
-		return Id;
+	public long getId() {
+		return id;
 	}
-	public void setId(Long id) {
-		Id = id;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public Category getCategory() {
 		return category;
@@ -91,7 +91,11 @@ public class Book {
 	
 	@Override
 	public String toString() {
-		return "Book [Id=" + Id + ", author=" + author + ", title=" + title + ", isbn=" + isbn + ", year=" + year
+		if (this.category != null)
+			return "Book [id=" + id + ", author=" + author + ", title=" + title + ", isbn=" + isbn + ", year=" + year
+					+ ", price=" + price + ", category=" + this.getCategory() + "]";
+		else
+			return "Book [id=" + id + ", author=" + author + ", title=" + title + ", isbn=" + isbn + ", year=" + year
 				+ ", price=" + price + "]";
 	}
 	

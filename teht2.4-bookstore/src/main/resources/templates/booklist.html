@@ -15,17 +15,21 @@
 			<th>ID</th>
 			<th>Author</th>
 			<th>Title</th>
+			<th>Category</th>
 			<th>ISBN</th>
 			<th>Year</th>
 			<th>Price</th>
 			<th></th>
 			<th></th>
 		
-
 		<tr th:each="book : ${books}">
 			<td th:text="${book.id}">Id</td>
 			<td th:text="${book.author}">Author</td>
 			<td th:text="${book.title}">Title</td>
+			<td>
+    		<span th:if="${book.category!=null}" th:text="${book.category.name}"></span>
+    		<span th:unless="${book.category!=null}" ></span>
+    		</td>	
 			<td th:text="${book.isbn}">ISBN</td>
 			<td th:text="${book.year}">Year</td>
 			<td th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">Price</td>

@@ -2,6 +2,8 @@ package hh.swd20.teht2.bookstore.web;
 
 import hh.swd20.teht2.bookstore.domain.Book;
 import hh.swd20.teht2.bookstore.domain.BookRepo;
+
+import hh.swd20.teht2.bookstore.domain.CategoryRepo;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class BookController {
 	
 	@Autowired
-	BookRepo bookRepo; 
+	BookRepo bookRepo;
+	@Autowired
+	CategoryRepo categoryRepo;
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String listBooks() {
@@ -29,14 +33,15 @@ public class BookController {
 	
 	@RequestMapping(value="/booklist", method = RequestMethod.GET)
 	public String getAllBooks(Model model) {
-		List<Book> books = (List<Book>) bookRepo.findAll();
-		model.addAttribute("books", books);
+		model.addAttribute("books", bookRepo.findAll());
 		return "booklist";
 	}
 	
 	@RequestMapping(value = "/newbook", method = RequestMethod.GET)
 	public String getNewBookForm(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("categories", categoryRepo.findAll());
+		
 		return "addbook";
 	}
 	

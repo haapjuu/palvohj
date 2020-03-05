@@ -21,37 +21,26 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
-
-	@Bean
-	public CommandLineRunner bookDemo(BookRepo bookRepo) { 
-		return (args) -> {
-			log.info("save some books");
-			bookRepo.save(new Book("tyyppi1", "kirja1", "213123-3", 2001, 19.90));
-			bookRepo.save(new Book("tyyppi2", "kirja2", "123-312", 1990, 3.50));	
-			
-			log.info("fetch all books");
-			for (Book book : bookRepo.findAll()) {
-				log.info(book.toString());
-			}
-
-		};
-	}
 	
 	@Bean
-	public CommandLineRunner categoryDemo(CategoryRepo categoryRepo) { 
+	public CommandLineRunner booksaveDemo(BookRepo bookRepo, CategoryRepo categoryRepo) { 
 		return (args) -> {
-			log.info("save some books");
+			
+			log.info("create categories");
+			
 			categoryRepo.save(new Category("scifi"));
 			categoryRepo.save(new Category("comic"));	
 			
+			log.info("save books with categories");
+				
+			bookRepo.save(new Book("test author 1", "test comic 1", "DIS3890-1", 1999, 19.90, categoryRepo.findByName("comic")));
+			bookRepo.save(new Book("test author 2", "test scifi 1", "ISBD832-5", 2014, 38.65, categoryRepo.findByName("scifi")));
+			
 			log.info("fetch all books");
-			for (Category category : categoryRepo.findAll()) {
-				log.info(category.toString());
+			
+			for(Book book : bookRepo.findAll()) {
+				log.info(book.toString());
 			}
-
 		};
 	}
-	
-	
-	
 }
