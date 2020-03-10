@@ -28,11 +28,11 @@ public class Category {
 		this.name = name;
 	}
 	
-	public long getcid() {
+	public long getCid() {
 		return cid;
 	}
 	
-	public void setcid(long cid) {
+	public void setCid(long cid) {
 		this.cid = cid;
 	}
 	
