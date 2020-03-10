@@ -46,6 +46,11 @@ public class BookController {
 		return bookRepo.findById(bookId);
 	}
 	
+	@RequestMapping(value="/book/{isbn}", method = RequestMethod.GET)
+	public @ResponseBody Optional<Book> findByIsbn(@PathVariable("isbn") String isbn){
+		return bookRepo.findByIsbn(isbn);
+	}
+	
 	@RequestMapping(value = "/newbook", method = RequestMethod.GET)
 	public String getNewBookForm(Model model) {
 		model.addAttribute("book", new Book());
