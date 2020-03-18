@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 <title>Book List</title>
@@ -9,7 +9,7 @@
 
 <body>
 
-	<h1>Hello [[${#httpServletRequest.remoteUser}]]</h1>
+	<h1>Logged in as: [[${#httpServletRequest.remoteUser}]]</h1>
 	<table class="table table-striped">
 		<tr>
 			<th>ID</th>
@@ -19,8 +19,9 @@
 			<th>ISBN</th>
 			<th>Year</th>
 			<th>Price</th>
-			<th sec:authorize="hasRole('ADMIN')"></th>
-			<th sec:authorize="hasRole('ADMIN')"></th>
+			<th></th>
+			<th></th>
+		</tr>
 		
 		<tr th:each="book : ${books}">
 			<td th:text="${book.id}">Id</td>
@@ -28,17 +29,17 @@
 			<td th:text="${book.title}">Title</td>
 			<td>
     		<span th:if="${book.category!=null}" th:text="${book.category.name}"></span>
-    		<span th:unless="${book.category!=null}" ></span>
+    		<span th:unless="${book.category!=null}"></span>
     		</td>	
 			<td th:text="${book.isbn}">ISBN</td>
 			<td th:text="${book.year}">Year</td>
 			<td th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')}">Price</td>
-			<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/deletebook/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
-			<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/editbook/{id}(id=${book.id})}" class="btn btn-info">Edit</a></td>
+			<td><a th:href="@{/deletebook/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
+			<td><a th:href="@{/editbook/{id}(id=${book.id})}" class="btn btn-info">Edit</a></td>
 		</tr>
 	</table>
 	
-			<p sec:authorize="hasRole('ADMIN')"><a href="/newbook" class="btn btn-success">New Book</a></p>
+			<p sec:authorize="hasAuthority('ADMIN')"><a href="/newbook" class="btn btn-success">New Book</a></p>
 			
 			<form th:action="@{/logout}" method="post">
 				<input type="submit" value="Logout"/>

@@ -5,14 +5,16 @@ import hh.swd20.teht2.bookstore.domain.Book;
 import hh.swd20.teht2.bookstore.domain.BookRepo;
 import hh.swd20.teht2.bookstore.domain.Category;
 import hh.swd20.teht2.bookstore.domain.CategoryRepo;
+import hh.swd20.teht2.bookstore.domain.User;
+import hh.swd20.teht2.bookstore.domain.UserRepo;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import hh.swd20.teht2.bookstore.domain.User;
-import hh.swd20.teht2.bookstore.domain.UserRepo;
+
 
 
 @SpringBootApplication
@@ -44,10 +46,10 @@ public class Application {
 				log.info(book.toString());
 			}
 			
-			User useru = new User("user", "$2a$04$jWPaK4cpCMw04hd7EXya2eQD0wDaMpvnHd5xsW4.IKtB5nwesUwSi", "","USER");
-			User usera = new User("admin", "$2a$04$Z5yDEcGIwc.xe2unbpEOuO.e7PaRxQ5OZbDE4GlsG1xB3bIrB0t46", "", "ADMIN");
-			userRepo.save(useru);
-			userRepo.save(usera);
+			User user1 = new User("user", "$2a$04$G5PqiG7vl0t1aYCVkT7pt.yPFB1uBeYJ53QWlnVU8O3aFXNH09/Te", "user@bookstore.com","USER");
+			User user2 = new User("admin", "$2a$04$O.yAQuuezI.z2Zbd3U8XGeQ2YDb8N2lSnJzbEdhzdZE0ODnJ1jf/G", "admin@bookstore.com", "ADMIN");
+			userRepo.save(user1);
+			userRepo.save(user2);
 			
 		};
 	}
