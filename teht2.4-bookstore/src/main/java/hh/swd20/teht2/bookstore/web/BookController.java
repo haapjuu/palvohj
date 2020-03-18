@@ -76,5 +76,10 @@ public class BookController {
 		bookRepo.save(book);
 		return "redirect:/booklist";
 	}
+	
+	@RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }
 }
 
