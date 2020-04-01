@@ -47,7 +47,7 @@ public class BookController {
 	}
 	
 	@RequestMapping(value="/book/{isbn}", method = RequestMethod.GET)
-	public @ResponseBody Optional<Book> findByIsbn(@PathVariable("isbn") String isbn){
+	public @ResponseBody List<Book> findByIsbn(@PathVariable("isbn") String isbn){
 		return bookRepo.findByIsbn(isbn);
 	}
 	

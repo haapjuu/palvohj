@@ -37,8 +37,8 @@ public class Application {
 			
 			log.info("save books with categories");
 				
-			bookRepo.save(new Book("test author 1", "test comic 1", "DIS3890-1", 1999, 19.90, categoryRepo.findByName("comic")));
-			bookRepo.save(new Book("test author 2", "test scifi 1", "ISBD832-5", 2014, 38.65, categoryRepo.findByName("scifi")));
+			bookRepo.save(new Book("test author 1", "test comic 1", "DIS3890-1", 1999, 19.90, categoryRepo.findByName("comic").get(0)));
+			bookRepo.save(new Book("test author 2", "test scifi 1", "ISBD832-5", 2014, 38.65, categoryRepo.findByName("scifi").get(0)));
 			
 			log.info("fetch all books");
 			
